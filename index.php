@@ -110,6 +110,10 @@ try {
 
     // forward it to some other URL
     $response = $proxy->forward($request, $url);
+    $response->headers->set('Access-Control-Allow-Origin', '*');
+    $response->headers->set('Access-Control-Allow-Credentials', 'true');
+    $response->headers->set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, HEAD');
+    $response->headers->set('Access-Control-Allow-Headers', 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type');
 
     // if that was a streaming response, then everything was already sent and script will be killed before it even reaches this line
     $response->send();
